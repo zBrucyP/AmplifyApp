@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: Arial;
 }
 
 .App-logo {
@@ -35,4 +36,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.app-title {
+    color:#32a84e;
+    font-weight:bold;
+    font-size: 250%;
+}
+
+.task-entry {
+    margin: 10px;
+    width:50%;
+    line-height:30px;
+    border: 3px solid #cccccc;
+}
+
+.submit-button {
+    margin: 10px;
+    border: 2px solid #32a84e;
+    width: 20%;
+    height: 30px;
 }
