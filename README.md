@@ -1,1 +1,0 @@
-# AmplifyApp
