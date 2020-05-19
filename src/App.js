@@ -28,6 +28,7 @@ class App extends React.Component {
                             key={item.id}
                             item={item}
                             toggleComplete={() => this.toggleComplete(item.id)}
+                            deleteTask={() => this.handleDelete(item.id)}
                          />
                     ))}
                 </ul>
@@ -48,11 +49,17 @@ class App extends React.Component {
                 }
             })
         }));
-    }
+    };
+
+    handleDelete = (id) => {
+        this.setState(state => ({
+            items: state.items.filter(item => item.id !== id)
+        }));
+    };
 
     handleChange = (e) => {
         this.setState({text: e.target.value});
-    }
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -68,7 +75,7 @@ class App extends React.Component {
             items: state.items.concat(newItem),
             text: ''
         }));
-    }
+    };
 }
 
 export default App;

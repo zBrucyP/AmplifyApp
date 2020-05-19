@@ -12,7 +12,12 @@ export default class Task extends React.Component {
                     color: this.props.item.complete ? "grey" : ""
                 }}
             >
-            <button>X</button>
+            <button onClick={this.props.deleteTask}
+                style={{
+                    margin:"6px",
+                    color:"red"
+                }}
+            >X</button>
                 {this.props.item.text}
             </div>
         )
