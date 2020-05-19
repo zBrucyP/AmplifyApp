@@ -1,71 +1,73 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Task from './components/Task';
 
 class App extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {items: [], text: '' };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {
         return (
-            <div class="App">
-                <div class="app-title">To-Do List</div>
+            <div className="App">
+                <div className="app-title">To-Do List</div>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         id="new-todo"
                         onChange={this.handleChange}
                         value={this.state.text}
-                        class="task-entry"
+                        className="task-entry"
                         placeholder="What needs to be done..?"
                     />
-                    <button class="submit-button">Add</button>
                 </form>
-                <ToDoList items={this.state.items} />
+                <ul className="toDoList">
+                    {this.state.items.map(item => (
+                        <Task
+                            key={item.id}
+                            item={item}
+                            toggleComplete={() => this.toggleComplete(item.id)}
+                         />
+                    ))}
+                </ul>
             </div>
         )
     }
 
-    handleChange(e) {
+    toggleComplete = (id) => {
+        this.setState(state => ({
+            items: state.items.map(item => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        complete: !item.complete
+                    };
+                } else {
+                    return item
+                }
+            })
+        }));
+    }
+
+    handleChange = (e) => {
         this.setState({text: e.target.value});
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.text.length === 0) {
             return;
         }
         const newItem = {
             text: this.state.text,
-            id: Date.now()
+            id: Date.now(),
+            complete: false
         };
         this.setState(state => ({
             items: state.items.concat(newItem),
             text: ''
         }));
-    }
-}
-
-class ToDoList extends React.Component {
-    render() {
-        return (
-            <ul>
-                {this.props.items.map(item => (
-                    <Task task={item} />
-                ))}
-            </ul>
-        )
-    }
-}
-
-class Task extends React.Component {
-    render() {
-        return(
-            <li key={this.props.task.id}>{this.props.task.text}</li>
-        )
     }
 }
 

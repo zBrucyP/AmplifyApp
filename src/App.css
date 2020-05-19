@@ -1,6 +1,8 @@
 .App {
-  text-align: center;
   font-family: Arial;
+  border: 1px solid black;
+  width: 50%;
+  text-align: center;
 }
 
 .App-logo {
@@ -51,9 +53,7 @@
     border: 3px solid #cccccc;
 }
 
-.submit-button {
-    margin: 10px;
-    border: 2px solid #32a84e;
-    width: 20%;
-    height: 30px;
+.toDoList {
+    text-align: left;
+    margin-bottom: 20px;
 }
